@@ -2,23 +2,22 @@ import { Component } from '@angular/core';
 
 
 export interface PeriodicElement {
-  name: string;
+  product: string;
   position: number;
-  weight: number;
-  symbol: string;
+  value: number;
+  category: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+  {position: 1, product: 'Carregador', value: 40.00, category: 'Acessorio'},
+  {position: 2, product: 'Fone de Ouvido', value: 15.00, category: 'Headset'},
+  {position: 3, product: 'HD Notebook', value: 200.00, category: 'Disco Rigido'},
+  {position: 4, product: 'Cabo USB', value: 10.00, category: 'Cabos'},
+  {position: 5, product: 'Fonte ATX', value: 70.00, category: 'Fonte'},
+  {position: 6, product: 'Estabilizador', value: 60.00, category: 'Estabilizador'},
+  {position: 7, product: 'Cooler VGA', value: 70.00, category: 'VGA'},
+  {position: 9, product: 'Case Ipod', value: 15.00, category: 'Acessorio'},
+  {position: 10, product: 'Computador Game', value: 2000.00, category: 'Completo'},
 ];
 @Component({
   selector: 'app-home',
@@ -26,6 +25,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'action'];
+  displayedColumns: string[] = ['position', 'product', 'value', 'category', 'action'];
   dataSource = ELEMENT_DATA;
 }
