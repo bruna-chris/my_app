@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatTable } from '@angular/material/table';
+import { ElementDialogComponent } from '../../shared/element-dialog/element-dialog.component';
 
 
 export interface PeriodicElement {
@@ -25,6 +28,30 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+  @ViewChild(MatTable)
+  table!: MatTable<any>;
   displayedColumns: string[] = ['position', 'product', 'value', 'category', 'action'];
   dataSource = ELEMENT_DATA;
+
+  constructor (public dialog: MatDialog) {}
+
+  openDialog(element: PeriodicElement | null ): void {
+    const dialogRef = this.dialog.open(ElementDialogComponent, {
+        data: element === null ? {
+          position: null,
+          product: '',
+          value: null,
+          category: ''
+        } : element
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+      if(result !==undefined) {
+        this.dataSource.push(result);
+        this.table.renderRows();
+      }
+    });
+  }
 }
+
+

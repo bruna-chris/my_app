@@ -1,5 +1,7 @@
 <div class ="container">
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <button mat-button color="primary" (click)="openDialog(null)"> Add Element</button>
+
+<table mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
 
   <ng-container matColumnDef="position">
     <th mat-header-cell *matHeaderCellDef> Id </th>

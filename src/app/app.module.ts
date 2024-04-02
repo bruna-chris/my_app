@@ -10,7 +10,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
+import { ElementDialogComponent } from './shared/element-dialog/element-dialog.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { MatDialogClose } from '@angular/material/dialog';
 
 
 
@@ -22,6 +26,8 @@ import { MatIconModule } from '@angular/material/icon';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
+    ElementDialogComponent,
+
 
   ],
   imports: [
@@ -30,7 +36,11 @@ import { MatIconModule } from '@angular/material/icon';
     MatToolbarModule,
     MatTableModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatDialogClose
   ],
   providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
