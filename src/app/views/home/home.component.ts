@@ -2,14 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { ElementDialogComponent } from '../../shared/element-dialog/element-dialog.component';
+import { PeriodicElement } from '../../models/PeriodicElement';
 
 
-export interface PeriodicElement {
-  product: string;
-  position: number;
-  value: number;
-  category: string;
-}
+
 
 const ELEMENT_DATA: PeriodicElement[] = [
   {position: 1, product: 'Carregador', value: 40.00, category: 'Acessorio'},

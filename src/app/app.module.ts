@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatDialogClose } from '@angular/material/dialog';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -40,7 +41,9 @@ import { MatDialogClose } from '@angular/material/dialog';
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
-    MatDialogClose
+    MatDialogClose,
+    HttpClientModule
+
   ],
   providers: [],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],

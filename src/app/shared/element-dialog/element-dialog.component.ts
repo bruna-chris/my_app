@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { PeriodicElement } from '../../views/home/home.component';
+import { PeriodicElement } from '../../models/PeriodicElement';
 import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -9,11 +9,14 @@ import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 
 export class ElementDialogComponent {
-  element!: PeriodicElement;
+element!: PeriodicElement;
+IsChange!: boolean;
 
   constructor(
+    @Inject(MAT_DIALOG_DATA)
+    public data: PeriodicElement,
     public dialogRef: MatDialogRef<ElementDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: PeriodicElement
+
   ) {}
 
   onCancel(): void {
