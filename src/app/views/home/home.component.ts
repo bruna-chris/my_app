@@ -56,6 +56,11 @@ export class HomeComponent {
   deleteElement(posiition:number) : void {
     this.dataSource = this.dataSource.filter(p => p.position !== posiition);
   }
+
+  editElement(element: PeriodicElement) : void {
+    this.openDialog(element);
+  }
+
 }
 
 
