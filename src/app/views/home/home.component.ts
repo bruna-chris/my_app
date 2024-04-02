@@ -1,8 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
+import { PeriodicElement } from './../../models/PeriodicElement';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { ElementDialogComponent } from '../../shared/element-dialog/element-dialog.component';
-import { PeriodicElement } from '../../models/PeriodicElement';
+import { PeriodicElementService } from '../../services/periodicElementservice';
 
 
 
@@ -21,36 +22,75 @@ const ELEMENT_DATA: PeriodicElement[] = [
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
+  providers: [PeriodicElementService]
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   @ViewChild(MatTable)
   table!: MatTable<any>;
   displayedColumns: string[] = ['position', 'product', 'value', 'category', 'action'];
-  dataSource = ELEMENT_DATA;
+  dataSource!: PeriodicElement[];
 
-  constructor (public dialog: MatDialog) {}
+  constructor (
+    public dialog: MatDialog,
+    public periodicElementService: PeriodicElementService
+    ) {
+      this.periodicElementService.getElements()
+       .subscribe((data: PeriodicElement[]) => {
+         console.log(data);
+         this.dataSource = data;
+       });
+    }
+
+  ngOnInit(): void {
+
+  }
 
   openDialog(element: PeriodicElement | null ): void {
     const dialogRef = this.dialog.open(ElementDialogComponent, {
+        width: '250px',
         data: element === null ? {
           position: null,
           product: '',
           value: null,
           category: ''
-        } : element
+        } : {
+          position: element.position,
+          product: element.product,
+          value: element.value,
+          category: element.category
+        }
       });
 
       dialogRef.afterClosed().subscribe(result => {
       if(result !==undefined) {
-        this.dataSource.push(result);
-        this.table.renderRows();
+        console.log(result)
+        if(this.dataSource.map(p => p. position).includes(result.position)) {
+          this.periodicElementService.editElement(result)
+          .subscribe((data:PeriodicElement) => {
+            this.dataSource[result.position -1] = data;
+            this.table.renderRows();
+          });
+        }else {
+          this.periodicElementService.createElements(result)
+           .subscribe((data: PeriodicElement) => {
+            this.dataSource.push(data);
+            this.table.renderRows();
+
+           });
+
+        }
+
       }
     });
   }
 
   deleteElement(posiition:number) : void {
-    this.dataSource = this.dataSource.filter(p => p.position !== posiition);
+    this.periodicElementService.deleteElement(posiition)
+     .subscribe(() => {
+      this.dataSource = this.dataSource.filter(p => p.position !== posiition);
+     })
+
   }
 
   editElement(element: PeriodicElement) : void {

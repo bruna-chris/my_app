@@ -1,5 +1,5 @@
-<h1 *ngIf="!IsChange">Creat Product</h1>
-<h1 *ngIf="IsChange"mat-dialog-title>Edit Product</h1>
+<h1 *ngIf="!isChange">Creat Product</h1>
+<h1 *ngIf="isChange"mat-dialog-title>Edit Product</h1>
 <mat-dialog-content>
   <mat-form-field>
     <mat-label>Id</mat-label>
@@ -20,6 +20,6 @@
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button  *ngIf="!IsChange"[matDialogClose]="data" cdkFocusInitial>Create</button>
-  <button mat-button *ngIf="IsChange"[matDialogClose]="data" cdkFocusInitial>Edit</button>
+  <button mat-button  *ngIf="!isChange"[matDialogClose]="data" cdkFocusInitial>Create</button>
+  <button mat-button *ngIf="isChange"[matDialogClose]="data" cdkFocusInitial>Edit</button>
 </mat-dialog-actions>
