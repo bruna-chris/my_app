@@ -26,6 +26,6 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'action'];
   dataSource = ELEMENT_DATA;
 }
