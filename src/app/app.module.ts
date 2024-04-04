@@ -16,6 +16,8 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatDialogClose } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
+import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt';
+//import { AuthService } from './services/products.service';
 
 
 
@@ -30,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
     ElementDialogComponent,
 
 
+
   ],
   imports: [
     BrowserModule,
@@ -42,10 +45,43 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     FormsModule,
     MatDialogClose,
-    HttpClientModule
+    HttpClientModule,
+    JwtModule,
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory
+      }
+    })
   ],
-  providers: [],
+  providers: [
+    {
+      provide: JWT_OPTIONS,
+      useValue: {
+        tokenGetter: () => {
+
+          return localStorage.getItem('access_token');
+        }
+    }
+
+    }
+  ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+export function jwtOptionsFactory() {
+  return {
+    tokenGetter: () => {
+      getToken();
+      whitelistedDomains: ['localhost:3000']
+      return localStorage.getItem('access_token');
+    },
+    whitelistedDomains: ['localhost:3000'],
+  }
+}
+function getToken() {
+  throw new Error('Function not implemented.');
+}
+
