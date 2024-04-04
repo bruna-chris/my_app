@@ -1,1 +1,58 @@
+1. Introdução
+	•	Breve descrição do que é Angular e JSON-Server.
+Angular é um framework de código aberto desenvolvido pelo Google para criação de app dinâmicos e interativos da web.Ele se baseia em TypeScript, uma linguagem superset do JavaScript,
+e utiliza uma abordagem orientada a componentes para a construção de interfaces.
+O Json_Server  é um pacote npm que você pode usar para criar um webservice REST JSON simulando uma API.
 
+	•	Propósito da documentação (instalar, configurar e usar Angular com JSON-Server)
+O proposito deste documento é justamente mostrar todas as configuraçōes necessárias para uma aplicação CRUD em Angular e criar uma API Fake para futuramente deixar o sistema 
+real mais robusto. 
+
+2. Requisitos de Sistema
+	•	Lista dos requisitos necessários para instalar e usar Angular e JSON-Server.
+Exemplos: Node.js, npm, Angular CLI.
+
+3. Instalação
+3.1. Instalação do Node.js e npm
+	•	SE ainda não estiverem instalados.
+https://nodejs.org/en/download
+https://docs.npmjs.com/cli/v8/commands/npm-install
+
+3.2. Instalação do Angular CLI
+	•	Instruções para instalar o Angular CLI globalmente via npm.
+https://www.npmjs.com/package/@angular/cli
+
+3.3. Instalação do JSON-Server
+	•	Instruções para instalar o JSON-Server globalmente via npm.
+https://www.npmjs.com/package/json-server
+
+4. Configuração do Projeto
+4.1. Criar um novo projeto Angular
+	•	Como criar um novo projeto Angular usando o Angular CLI.
+https://www.npmjs.com/package/angular-cli?activeTab=readme
+
+4.2. Configurar o JSON-Server
+	•	Instruções sobre como configurar o JSON-Server.
+
+Criar um arquivo JSON para servir como banco de dados fictício.
+Configurar um script npm para iniciar o JSON-Server.
+https://www.npmjs.com/package/json-server
+
+5. Uso Básico
+5.1. Iniciar o JSON-Server
+	•	Como iniciar o JSON-Server usando o script npm configurado.
+
+5.2. Desenvolvimento Angular
+	•	Instruções sobre como usar o Angular para se comunicar com o JSON-Server.
+Exemplos de como realizar solicitações HTTP GET, POST, PUT e DELETE para recuperar, adicionar, atualizar e excluir dados do servidor JSON.
+
+6. Exemplos de Uso
+	•	Exemplos práticos de como usar Angular com JSON-Server para criar uma aplicação básica.
+
+
+8. Referências
+	•	listas acima os sites oficiais
+
+9. Outras
+	• Meduim , exietem varios artigos com resoluçoes e exemplos dessa aplicação
+  Stackoverflow
