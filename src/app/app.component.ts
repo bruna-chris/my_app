@@ -37,6 +37,11 @@ export class AppComponent implements OnInit {
     this.product = { ...product };
   }
 
+  // atualiza o produto
+  updateProducts(products: Products){
+    this.product = products;
+  }
+
   // limpa o formulario
   cleanForm(form: NgForm) {
     this.getProducts();
