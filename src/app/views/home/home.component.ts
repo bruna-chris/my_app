@@ -1,12 +1,17 @@
-import { PeriodicElement } from './../../models/PeriodicElement';
+
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTable } from '@angular/material/table';
 import { ElementDialogComponent } from '../../shared/element-dialog/element-dialog.component';
-import { PeriodicElementService } from '../../services/periodicElementservice';
 
 
-
+export interface PeriodicElement {
+  //id: number;
+  product: string;
+  position: number;
+  value: number;
+  category: string;
+}
 
 const ELEMENT_DATA: PeriodicElement[] = [
   {position: 1, product: 'Carregador', value: 40.00, category: 'Acessorio'},
@@ -23,24 +28,18 @@ const ELEMENT_DATA: PeriodicElement[] = [
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
-  providers: [PeriodicElementService]
+
 })
 export class HomeComponent implements OnInit {
   @ViewChild(MatTable)
   table!: MatTable<any>;
   displayedColumns: string[] = ['position', 'product', 'value', 'category', 'action'];
-  dataSource!: PeriodicElement[];
+  dataSource = ELEMENT_DATA;
+
 
   constructor (
-    public dialog: MatDialog,
-    public periodicElementService: PeriodicElementService
-    ) {
-      this.periodicElementService.getElements()
-       .subscribe((data: PeriodicElement[]) => {
-         console.log(data);
-         this.dataSource = data;
-       });
-    }
+    public dialog: MatDialog) {}
+
 
   ngOnInit(): void {
 
@@ -60,43 +59,28 @@ export class HomeComponent implements OnInit {
           value: element.value,
           category: element.category
         }
-      });
+    });
 
       dialogRef.afterClosed().subscribe(result => {
       if(result !==undefined) {
         console.log(result)
-        if(this.dataSource.map(p => p. position).includes(result.position)) {
-          this.periodicElementService.editElement(result)
-          .subscribe((data:PeriodicElement) => {
-            this.dataSource[result.position -1] = data;
-            this.table.renderRows();
-          });
+        if(this.dataSource.map(p => p.position).includes(result.position)) {
+          this.dataSource[result.position -1] = result;
+          this.table.renderRows();
         }else {
-          this.periodicElementService.createElements(result)
-           .subscribe((data: PeriodicElement) => {
-            this.dataSource.push(data);
-            this.table.renderRows();
-
-           });
-
+         this.dataSource.push(result);
+         this.table.renderRows();
         }
-
       }
     });
   }
 
-  deleteElement(posiition:number) : void {
-    this.periodicElementService.deleteElement(posiition)
-     .subscribe(() => {
-      this.dataSource = this.dataSource.filter(p => p.position !== posiition);
-     })
-
+  deleteElement(position:number) : void {
+    this.dataSource = this.dataSource.filter(p => p.position !== position);
   }
+
 
   editElement(element: PeriodicElement) : void {
     this.openDialog(element);
   }
-
 }
-
-
